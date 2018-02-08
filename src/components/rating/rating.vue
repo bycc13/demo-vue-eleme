@@ -1,23 +1,16 @@
 <template>
-  <div >
-    <button 
-      @click="justClick()" 
-      :class="[
-        { 'active': active }
-      ]" 
-    >
-      just click
-    </button>
+  <div>
+    <div>---------------------------------------------------------</div>
 
-    <div>{{msg}}</div>
     <div 
       v-text="msg" 
       :href="msg"
     >
       <span>v-text</span>
     </div>
-
     <input type="text" v-model="msg">
+    
+    <div>---------------------------------------------------------</div>
 
     <ul>
       <li 
@@ -28,19 +21,32 @@
       </li>
     </ul>
 
+    <div>---------------------------------------------------------</div>
+
+    <button 
+      @click="justClick()" 
+      :class="[
+        { 'active': active }
+      ]" 
+    >
+      just click
+    </button>
+
     <template v-if="loginType === 'username'">
       <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+      <input placeholder="Enter your username" >
     </template>
     <template v-else>
       <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <input placeholder="Enter your email address" >
     </template>
 
     <template>
       <label>Username</label>
       <input v-show="active" placeholder="Enter your username" >
     </template>
+
+    <div>---------------------------------------------------------</div>
 
     <ul>
       <li 
@@ -58,7 +64,11 @@
       </li>
     </ul>
 
+    <div>---------------------------------------------------------</div>
+
     <button @click="filterBtn()">filterdd</button>
+
+    <div>---------------------------------------------------------</div>
 
     <ul>
       <template >
@@ -66,9 +76,42 @@
       </template> 
     </ul>
 
+    <div>---------------------------------------------------------</div>
+
     <dialog open>
       <p>Greetings, one and all!</p>
     </dialog>
+
+    <div>---------------------------------------------------------</div>
+
+    <div>
+      <button @click="counter += 1">add 1</button>
+      <p>The button abover has been clicked {{counter}} times</p>
+    </div>
+
+    <div>---------------------------------------------------------</div>
+
+    <input @click.ctrl ="keyUpFun()" >
+
+    <div>---------------------------------------------------------</div>
+
+    <div id='example-3'>
+      <input type="checkbox" id="jack" value="Jack3" v-model="checked">
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="Joh3n" v-model="checkedNames">
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mi3ke" v-model="checkedNames">
+      <label for="mike">Mike</label>
+      <br>
+      <span>Checked names: {{ checkedNames }}</span>
+      <span>Checked names: {{ checked }}</span>
+      <input 
+        type="text"
+        v-model="toggle"
+        true-value="yes"
+        false-value="no"
+      >
+    </div>
 
   </div>
   
@@ -83,6 +126,8 @@ export default {
       items: [1, 2, 3, 52554, 5],
       active: false,
       loginType: 'username',
+      checkedNames: [],
+      checked: true,
       person: [
         {
           name: 'kacj',
@@ -99,7 +144,8 @@ export default {
           email: 'ty@163.com',
           age: 8
         }
-      ]
+      ],
+      counter: 0
     }
   },
   methods: {
@@ -122,9 +168,14 @@ export default {
       this.person = this.person.filter(function (item) {
         return item.match(/2/)
       })
+    },
+    keyUpFun () {
+      // this.config.keyCodes.c = 112
+      console.log('keyup: 13')
     }
   }
 }
+
 </script>
 
 <style>
